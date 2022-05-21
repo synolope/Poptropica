@@ -1,6 +1,56 @@
 (async function(){
     var username = prompt("Username");
     var password = prompt("Password");
+
+    async function getitems(){
+        var response = await fetch("https://www.poptropica.com/list_redeemable_items.php", {
+          "headers": {
+            "accept": "*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/x-www-form-urlencoded",
+            "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin"
+          },
+          "referrer": "https://www.poptropica.com/haxe/play/",
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "body": "all_active=Y&cats=2001%7C2003%7C2004%7C2011%7C2012%7C2013%7C2014%7C2015%7C2016%7C2017%7C2018%7C2019%7C2046",
+          "method": "POST",
+          "mode": "cors",
+          "credentials": "include"
+        });
+        var text = await response.text();
+        eval(text);
+        return items_info;
+    };
+
+    async function getitems2(){
+        var response = await fetch("https://www.poptropica.com/list_redeemable_items.php", {
+          "headers": {
+            "accept": "*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/x-www-form-urlencoded",
+            "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin"
+          },
+          "referrer": "https://www.poptropica.com/haxe/play/",
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "body": "all_active=N&cats=2001%7C2003%7C2004%7C2011%7C2012%7C2013%7C2014%7C2015%7C2016%7C2017%7C2018%7C2019%7C2046",
+          "method": "POST",
+          "mode": "cors",
+          "credentials": "include"
+        });
+        var text = await response.text();
+        eval(text);
+        return items_info;
+    };
     
     function md5(inputString) {
         var hc="0123456789abcdef";
@@ -44,6 +94,74 @@
         }
         return rh(a)+rh(b)+rh(c)+rh(d);
     };
+
+    var inv = [];
+
+    var items = await getitems();
+
+    items[2001].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2003].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2004].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2011].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2012].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2013].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2014].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2015].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2016].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2017].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2018].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items[2019].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+
+    var items2 = await getitems2();
+
+    items2[2001].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2012].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2013].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2014].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2015].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2016].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2017].forEach(function (item, index) {
+        inv.push(item.id);
+    });
+    items2[2019].forEach(function (item, index) {
+        inv.push(item.id);
+    });
     
     var response = await fetch("https://www.poptropica.com/reguser.php", {
         "headers": {
@@ -59,30 +177,11 @@
         },
         "referrer": "https://www.poptropica.com/haxe/play/?npc_name=FastRide",
         "referrerPolicy": "strict-origin-when-cross-origin",
-        "body": "login=" + username + "&pass_hash=" + md5(password) + "&look=1%2C0xd18641%2C0x480000%2C673933%2C100%2C1%2Cnull%2Ctowerprep_boys%2C4%2Cgotgame%2Cchar27%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnone%3A&lastroom=HomeHub&island=Hub_as3&lastx=2350&lasty=765&fname=&lname=&age=6&gender=M&inv=3767&picked=&events_list=hub_as3_started%2Chub_show_clue_1%2Chub_firstTimeStart%2Cstore_gotItem_3767%2Cstore_hasItem_3767&user_data=",
+        "body": "login=" + username + "&pass_hash=" + md5(password) + "&inv=" + inv.join() + "&look=1%2C0xd18641%2C0x480000%2C673933%2C100%2C1%2Cnull%2Ctowerprep_boys%2C4%2Cgotgame%2Cchar27%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnone%3A&lastroom=HomeHub&island=Hub_as3&lastx=2350&lasty=765&fname=Got&lname=Game&age=6&gender=M&picked=&user_data=",
         "method": "POST",
         "mode": "cors",
         "credentials": "include"
       });
     alert(await response.text());
 
-    fetch("https://www.poptropica.com/change_look.php", {
-  "headers": {
-    "accept": "*/*",
-    "accept-language": "en-US,en;q=0.9",
-    "content-type": "application/x-www-form-urlencoded",
-    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"",
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": "\"Windows\"",
-    "sec-fetch-dest": "empty",
-    "sec-fetch-mode": "cors",
-    "sec-fetch-site": "same-origin"
-  },
-  "referrer": "https://www.poptropica.com/haxe/play/",
-  "referrerPolicy": "strict-origin-when-cross-origin",
-  "body": "login=" + username + "&pass_hash=" + md5(password) + "&dbid=1&look=1%2C14579530%2C2825497%2C2829366%2C100%2C1%2C1%2Cjuly_surfer%2C4%2Cgotgame%2Cjuly_surfer%2Ctyson%2C1%2C1%2Cstore_kitty_softie%2Cstore_kitty_softie%2C1%2Cnone%3A",
-  "method": "POST",
-  "mode": "cors",
-  "credentials": "include"
-});
 })();
