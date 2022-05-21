@@ -177,7 +177,7 @@
         },
         "referrer": "https://www.poptropica.com/haxe/play/?npc_name=FastRide",
         "referrerPolicy": "strict-origin-when-cross-origin",
-        "body": "login=" + username + "&pass_hash=" + md5(password) + "&inv=" + inv.join() + "&look=1%2C0xd18641%2C0x480000%2C673933%2C100%2C1%2Cnull%2Ctowerprep_boys%2C4%2Cgotgame%2Cchar27%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnone%3A&lastroom=HomeHub&island=Hub_as3&lastx=2350&lasty=765&fname=Got&lname=Game&age=6&gender=M&picked=&user_data=",
+        "body": "login=" + username + "&pass_hash=" + md5(password.toLowerCase()) + "&inv=" + inv.join() + "&look=1%2C0xd18641%2C0x480000%2C673933%2C100%2C1%2Cnull%2Ctowerprep_boys%2C4%2Cgotgame%2Cchar27%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnone%3A&lastroom=HomeHub&island=Hub_as3&lastx=2350&lasty=765&fname=Got&lname=Game&age=6&gender=M&picked=&user_data=",
         "method": "POST",
         "mode": "cors",
         "credentials": "include"
